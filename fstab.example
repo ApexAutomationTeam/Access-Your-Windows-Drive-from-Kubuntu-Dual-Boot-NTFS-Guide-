@@ -1,0 +1,7 @@
+# /etc/fstab entry to mount the Windows drive automatically at every boot.
+# 1) Find the UUID:      sudo blkid /dev/nvme0n1p3
+# 2) Make the folder:    sudo mkdir -p /mnt/windows
+# 3) Back up first:      sudo cp /etc/fstab /etc/fstab.bak
+# 4) Add ONE line like this (replace UUID, and 1000 with your user id from the `id` command):
+UUID=XXXXXXXXXXXXXXXX  /mnt/windows  ntfs-3g  defaults,uid=1000,gid=1000,umask=022,windows_names,nofail,x-systemd.device-timeout=5  0  0
+# 5) Test without rebooting:  sudo systemctl daemon-reload && sudo mount -a
